@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "459472530844",
+    "project_id": "karaca-prototype",
+    "storage_bucket": "karaca-prototype.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:459472530844:android:d6b3dcd81534cb9e85ac59",
+        "android_client_info": {
+          "package_name": "com.example.karaca_katalog"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "459472530844-btmhp7hr25gtaer46rjf5f9t6o1rqi1m.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.karaca_katalog",
+            "certificate_hash": "8c1c01363caefc0904f525eefc7ab8887525a27d"
+          }
+        },
+        {
+          "client_id": "459472530844-or05lur7tudv32mmh5rcp95tk5u28al0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCl_9U2vyPlSCut6DN334PMSrb0REJ4hsI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "459472530844-or05lur7tudv32mmh5rcp95tk5u28al0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
