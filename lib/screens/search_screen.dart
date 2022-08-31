@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:karaca_katalog/screens/result_page.dart';
 import '../reusable_widgets/reusable_widget.dart';
 
 class SearchScreen extends StatefulWidget {
@@ -34,14 +35,21 @@ class _SearchScreenState extends State<SearchScreen> {
                   height: 20,
                 ),
                 firebaseButton(context, "Search", () {
-                  // Results Page eklenecek
+                  if (_productTextController.text.isEmpty) {
+                    customAlert(context, "Search value cannot be empty");
+                  } else {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const ResultPage()));
+                  }
                 }),
                 const SizedBox(
                   height: 20,
                 ),
                 barcodeText(),
                 const SizedBox(
-                  height: 20,
+                  height: 200,
                 ),
                 firebaseButton(context, "Log Out", () {
                   FirebaseAuth.instance
@@ -54,6 +62,10 @@ class _SearchScreenState extends State<SearchScreen> {
         ),
       ),
     );
+  }
+
+  String getProductID() {
+    return _productTextController.text;
   }
 
   Row barcodeText() {

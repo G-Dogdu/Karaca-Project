@@ -66,3 +66,22 @@ Container firebaseButton(BuildContext context, String title, Function onTap) {
     ),
   );
 }
+
+customAlert(BuildContext context, String text) {
+  Widget okButton = TextButton(
+    onPressed: () {
+      Navigator.pop(context);
+    },
+    child: const Text("OK"),
+  );
+  AlertDialog alert = AlertDialog(
+    title: const Text("Attention"),
+    content: Text(text),
+    actions: [okButton],
+  );
+  showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return alert;
+      });
+}

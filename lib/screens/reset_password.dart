@@ -34,9 +34,15 @@ class _ResetPasswordState extends State<ResetPassword> {
                   height: 40,
                 ),
                 firebaseButton(context, "Reset", () {
-                  FirebaseAuth.instance
-                      .sendPasswordResetEmail(email: _emailTextController.text)
-                      .then((value) => Navigator.pop(context));
+                  if (_emailTextController.toString() !=
+                      FirebaseAuth.instance.currentUser!.email.toString()) {
+                    customAlert(context, "Email is wrong");
+                  } else {
+                    FirebaseAuth.instance
+                        .sendPasswordResetEmail(
+                            email: _emailTextController.text)
+                        .then((value) => Navigator.pop(context));
+                  }
                 })
               ],
             ),

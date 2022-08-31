@@ -1,5 +1,4 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
 import '../reusable_widgets/reusable_widget.dart';
@@ -48,14 +47,19 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   height: 40,
                 ),
                 firebaseButton(context, "Sign Up", () {
-                  FirebaseAuth.instance
-                      .createUserWithEmailAndPassword(
-                          email: _emailTextController.text,
-                          password: _passwordTextController.text)
-                      .then((value) => Navigator.pop(context))
-                      .onError((error, stackTrace) {
-                    print("Error ${error.toString()}");
-                  });
+                  if (_emailTextController.text.isEmpty ||
+                      _passwordTextController.text.isEmpty) {
+                    customAlert(context, "Credentials cannot be empty");
+                  } else {
+                    FirebaseAuth.instance
+                        .createUserWithEmailAndPassword(
+                            email: _emailTextController.text,
+                            password: _passwordTextController.text)
+                        .then((value) => Navigator.pop(context))
+                        .onError((error, stackTrace) {
+                      print("Error ${error.toString()}");
+                    });
+                  }
                 })
               ],
             ),

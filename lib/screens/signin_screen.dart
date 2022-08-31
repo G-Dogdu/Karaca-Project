@@ -48,22 +48,27 @@ class _SignInScreenState extends State<SignInScreen> {
                   context,
                   "Sign In",
                   () {
-                    FirebaseAuth.instance
-                        .signInWithEmailAndPassword(
-                            email: _emailTextController.text,
-                            password: _passwordTextController.text)
-                        .then(
-                      (value) {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => const SearchScreen(),
-                          ),
-                        );
-                      },
-                    ).onError((error, stackTrace) {
-                      print("Error ${error.toString()}");
-                    });
+                    if (_emailTextController.text.isEmpty ||
+                        _passwordTextController.text.isEmpty) {
+                      customAlert(context, "Credentials cannot be empty");
+                    } else {
+                      FirebaseAuth.instance
+                          .signInWithEmailAndPassword(
+                              email: _emailTextController.text,
+                              password: _passwordTextController.text)
+                          .then(
+                        (value) {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const SearchScreen(),
+                            ),
+                          );
+                        },
+                      ).onError((error, stackTrace) {
+                        print("Error ${error.toString()}");
+                      });
+                    }
                   },
                 ),
                 const SizedBox(
