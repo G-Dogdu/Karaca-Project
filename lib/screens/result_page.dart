@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:karaca_katalog/reusable_widgets/reusable_widget.dart';
 
 class ResultPage extends StatefulWidget {

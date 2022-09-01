@@ -1,7 +1,12 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
+import 'package:karaca_katalog/Item/item.dart';
 import 'package:karaca_katalog/screens/result_page.dart';
 import '../reusable_widgets/reusable_widget.dart';
+
+CurrentItem item = CurrentItem("", "", "", "");
 
 class SearchScreen extends StatefulWidget {
   const SearchScreen({Key? key}) : super(key: key);
@@ -78,9 +83,7 @@ class _SearchScreenState extends State<SearchScreen> {
         ),
         GestureDetector(
           onTap: () {
-            /* Navigator.push(context,
-                MaterialPageRoute(builder: (context) => const SignUpScreen())
-                ); */
+            scanBarcode();
           },
           child: const Text(
             "Scan Now",
@@ -89,5 +92,25 @@ class _SearchScreenState extends State<SearchScreen> {
         )
       ],
     );
+  }
+
+  Future scanBarcode() async {
+    String? scanResult;
+
+    try {
+      scanResult = await FlutterBarcodeScanner.scanBarcode(
+          "#ff6666", "Cancel", false, ScanMode.BARCODE);
+    } on PlatformException {
+      customAlert(context, "Barcode Error");
+    }
+    if (mounted) {
+      if (scanResult == "-1") {
+        Navigator.pop(context);
+      } else {
+        item.setSku(scanResult!);
+        Navigator.push(context,
+            MaterialPageRoute(builder: (context) => const ResultPage()));
+      }
+    }
   }
 }
