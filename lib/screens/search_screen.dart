@@ -49,7 +49,7 @@ class _SearchScreenState extends State<SearchScreen> {
                 ),
                 barcodeText(),
                 const SizedBox(
-                  height: 200,
+                  height: 150,
                 ),
                 firebaseButton(context, "Log Out", () {
                   FirebaseAuth.instance
