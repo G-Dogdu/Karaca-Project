@@ -8,7 +8,8 @@ import 'package:barcode_widget/barcode_widget.dart';
 import 'search_screen.dart';
 
 Future<Album> fetchAlbum() async {
-  const String apiEndpoint = '';
+  const String apiEndpoint =
+      'https://devtest.krc.com.tr/webservices/krcmobile/products?q=hatır&sort=name&order=ASC&page=1';
   final Uri url = Uri.parse(apiEndpoint);
   final response = await http.get(url);
 
