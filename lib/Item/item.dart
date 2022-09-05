@@ -1,12 +1,16 @@
+import 'package:flutter/material.dart';
+
 class CurrentItem {
-  late String name;
-  late String id;
-  late String price;
-  late String sku;
+  Text? name;
+  String? id;
+  Text? price;
+  String? sku;
+  Text? model;
+  List<String>? images = [];
 
-  CurrentItem(this.name, this.id, this.price, this.sku);
+  CurrentItem(this.name, this.id, this.price, this.sku, this.model);
 
-  String? getName() {
+  Text? getName() {
     return name;
   }
 
@@ -14,27 +18,43 @@ class CurrentItem {
     return id;
   }
 
-  String? getPrice() {
+  Text? getPrice() {
     return price;
+  }
+
+  Text? getModel() {
+    return model;
   }
 
   String? getSku() {
     return sku;
   }
 
-  void setName(String newName) {
+  List<String>? getImages() {
+    return images;
+  }
+
+  void setName(Text? newName) {
     name = newName;
   }
 
-  void setId(String newId) {
+  void setId(String? newId) {
     id = newId;
   }
 
-  void setPrice(String newPrice) {
+  void setPrice(Text? newPrice) {
     price = newPrice;
   }
 
-  void setSku(String newSku) {
+  void setModel(Text? newModel) {
+    model = newModel;
+  }
+
+  void setSku(String? newSku) {
     sku = newSku;
+  }
+
+  void addImage(String? url) {
+    images?.add(url!);
   }
 }

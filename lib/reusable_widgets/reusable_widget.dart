@@ -85,3 +85,21 @@ customAlert(BuildContext context, String text) {
         return alert;
       });
 }
+
+List<Widget> indicators(imagesLength, currentIndex) {
+  return List<Widget>.generate(
+    imagesLength,
+    (index) {
+      return Container(
+        margin: const EdgeInsets.all(3),
+        width: 10,
+        height: 10,
+        decoration: BoxDecoration(
+            color: currentIndex == index ? Colors.black : Colors.black26,
+            shape: BoxShape.circle),
+      );
+    },
+  );
+}
+
+

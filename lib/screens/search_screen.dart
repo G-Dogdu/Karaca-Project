@@ -6,7 +6,7 @@ import 'package:karaca_katalog/Item/item.dart';
 import 'package:karaca_katalog/screens/result_page.dart';
 import '../reusable_widgets/reusable_widget.dart';
 
-CurrentItem item = CurrentItem("", "", "", "");
+CurrentItem item = CurrentItem(Text(""), "", Text(""), "", Text(""));
 
 class SearchScreen extends StatefulWidget {
   const SearchScreen({Key? key}) : super(key: key);
@@ -43,6 +43,7 @@ class _SearchScreenState extends State<SearchScreen> {
                   if (_productTextController.text.isEmpty) {
                     customAlert(context, "Search value cannot be empty");
                   } else {
+                    item.setId(_productTextController.text);
                     Navigator.push(
                         context,
                         MaterialPageRoute(
@@ -98,14 +99,15 @@ class _SearchScreenState extends State<SearchScreen> {
     String? scanResult;
 
     try {
-      scanResult = await FlutterBarcodeScanner.scanBarcode(
-          "#ff6666", "Cancel", false, ScanMode.BARCODE);
+      scanResult = (await FlutterBarcodeScanner.scanBarcode(
+          "#ff6666", "Cancel", false, ScanMode.BARCODE));
     } on PlatformException {
       customAlert(context, "Barcode Error");
     }
     if (mounted) {
       if (scanResult == "-1") {
-        Navigator.pop(context);
+        Navigator.push(context,
+            MaterialPageRoute(builder: (context) => const SearchScreen()));
       } else {
         item.setSku(scanResult!);
         Navigator.push(context,
